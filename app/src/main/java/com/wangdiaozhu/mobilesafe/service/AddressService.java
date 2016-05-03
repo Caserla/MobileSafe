@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.wangdiaozhu.mobilesafe.R;
 import com.wangdiaozhu.mobilesafe.db.dao.AddressDao;
+import com.wangdiaozhu.mobilesafe.utils.PrefUtils;
 
 
 /**
@@ -97,6 +98,11 @@ public class AddressService extends Service {
        view = View.inflate(this, R.layout.custom_toast,null);
 
         tv_address = (TextView) view.findViewById(R.id.tv_address);
+
+                     int style =  PrefUtils.getInt("address_style",0,this);
+        int[] bgIds = new int[]{R.drawable.call_locate_white,R.drawable.call_locate_orange,
+                R.drawable.call_locate_blue,R.drawable.call_locate_gray,R.drawable.call_locate_gray};
+        tv_address.setBackgroundResource(bgIds[style]);
         tv_address.setText(address);
              mWM.addView(view,params);
     }

@@ -23,6 +23,7 @@ public class SettingActivity extends Activity {
     private SettingItemView sivUpdate;
     private SettingItemView sivAddress;
     private SettingItemClickView sicStyle;
+    private String[] items = new String[]{"半透明","活力橙","卫士篮","金属灰","苹果绿"};;
     // private SharedPreferences sp;
 
     @Override
@@ -39,7 +40,8 @@ public class SettingActivity extends Activity {
 
         sicStyle = (SettingItemClickView) findViewById(R.id.sic_style);
         sicStyle.setTitle("归属地提示框风格");
-        sicStyle.setDesc("半透明");
+        int style = PrefUtils.getInt("address_style",0,this);
+        sicStyle.setDesc(items[style]);
         sicStyle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,12 +51,12 @@ public class SettingActivity extends Activity {
     }
 
     private void showChoiseDialog() {
+        int style = PrefUtils.getInt("address_style",0,this);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("归属地提示框风格");
         builder.setIcon(R.mipmap.ic_launcher);
-        final String[] items = new String[]{"半透明","活力橙","卫士篮","金属灰","苹果绿"};
-        builder.setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
+        builder.setSingleChoiceItems(items, style, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -63,7 +65,7 @@ public class SettingActivity extends Activity {
                 sicStyle.setDesc(items[which]);//更新描述
             }
         });
-        builder.setNegativeButton("取消",null);
+        builder.setNegativeButton("取消", null);
         builder.show();
     }
 
