@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:wangdiaozhu="http://schemas.android.com/apk/com.wangdiaozhu.mobilesafe"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        style="@style/TitleStyle"
+        android:text="设置中心" />
+    <com.wangdiaozhu.mobilesafe.view.SettingItemView
+        android:id="@+id/siv_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        wangdiaozhu:mtitle="自动更新设置"
+        wangdiaozhu:mdesc_on = "自动更新已开启"
+        wangdiaozhu:mdesc_off = "自动更新已关闭"
+        />
+    <com.wangdiaozhu.mobilesafe.view.SettingItemView
+        android:id="@+id/siv_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        wangdiaozhu:mtitle="电话归属地显示设置"
+        wangdiaozhu:mdesc_on = "归属地显示已经开启"
+        wangdiaozhu:mdesc_off = "归属地显示设置已经关闭"
+        />
+
+
+</LinearLayout>

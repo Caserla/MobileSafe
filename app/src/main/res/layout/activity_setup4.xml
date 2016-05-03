@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:wangdiaozhu="http://schemas.android.com/apk/res-auto"
+   android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+<TextView
+    style="@style/TitleStyle"
+    android:text="4.恭喜您，设置完成"
+    />
+    <CheckBox
+        android:id="@+id/cb_protect"
+        android:textSize="20sp"
+        android:text="您没有开启防盗保护"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+        <ImageView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_invisible"/>
+        <ImageView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_invisible"/>
+        <ImageView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_invisible"/>
+        <ImageView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_online"/>
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:src="@drawable/phone"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+        <Button
+
+          style="@style/PreviousStyle"
+            android:id="@+id/bt_previous"
+           />
+
+        <Button
+           style="@style/SettingOverStyle"
+            android:id="@+id/bt_settingover"
+            />
+
+    </RelativeLayout>
+</LinearLayout>

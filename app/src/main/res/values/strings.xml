@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">手机卫士</string>
+    <string name="sample_device_admin_description">超级管理员,可以远程锁屏</string>
+    <string name="sample_device_admin">超级管理员</string>
+</resources>
