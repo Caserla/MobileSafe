@@ -5,12 +5,18 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
+import android.graphics.PixelFormat;
 import android.os.IBinder;
 import android.telecom.TelecomManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wangdiaozhu.mobilesafe.R;
 import com.wangdiaozhu.mobilesafe.db.dao.AddressDao;
 
 
@@ -22,6 +28,9 @@ public class AddressService extends Service {
     private TelephonyManager mTM;
     private MyListener listener;
     private innerReceiver mReceiver;
+    private WindowManager mWM;
+    private View view;
+    private TextView tv_address;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -66,9 +75,32 @@ public class AddressService extends Service {
 
            String address = AddressDao.getAddress(number);
 
-            Toast.makeText(getApplicationContext(),address,Toast.LENGTH_LONG).show();
+//            Toast.makeText(getApplicationContext(),address,Toast.LENGTH_LONG).show();
+
+                    showToast(address);
         }
     }
+
+    public void showToast(String address){
+
+        mWM = (WindowManager) getSystemService(WINDOW_SERVICE);
+        final WindowManager.LayoutParams params = new WindowManager.LayoutParams();
+        params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        params.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        params.format = PixelFormat.TRANSLUCENT;
+        params.type = WindowManager.LayoutParams.TYPE_TOAST;
+        params.setTitle("Toast");
+        params.flags = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+                | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE;
+
+       view = View.inflate(this, R.layout.custom_toast,null);
+
+        tv_address = (TextView) view.findViewById(R.id.tv_address);
+        tv_address.setText(address);
+             mWM.addView(view,params);
+    }
+
     class MyListener extends PhoneStateListener{
 
         @Override
@@ -78,11 +110,15 @@ public class AddressService extends Service {
 
                 case TelephonyManager.CALL_STATE_RINGING:
                     String address = AddressDao.getAddress(incomingNumber);
-                    Toast.makeText(getApplicationContext(),address,Toast.LENGTH_LONG).show();
+                    showToast(address);
                     break;
                 case TelephonyManager.CALL_STATE_OFFHOOK:
+
                     break;
                 case TelephonyManager.CALL_STATE_IDLE:
+
+                    if(mWM != null && view!= null){ mWM.removeView(view);   }
+
                     break;
             }
         }

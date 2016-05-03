@@ -24,6 +24,12 @@
         wangdiaozhu:mdesc_on = "归属地显示已经开启"
         wangdiaozhu:mdesc_off = "归属地显示设置已经关闭"
         />
+    <com.wangdiaozhu.mobilesafe.view.SettingItemClickView
+        android:id="@+id/sic_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        />
 
 
 </LinearLayout>

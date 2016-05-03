@@ -25,18 +25,17 @@
             android:textSize="13sp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="5dp"
-            android:textColor="#000"
+            android:textColor="#a000"
             android:text="描述"/>
 
-        <CheckBox
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/cb_check"
-            android:clickable="false"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
+            android:src="@drawable/jiantou1_pressed"
             android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_marginRight="5dp"
+            android:layout_alignParentRight="true" />
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
