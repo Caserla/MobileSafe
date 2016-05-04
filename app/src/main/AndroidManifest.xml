@@ -26,7 +26,8 @@
         <activity android:name=".activity.ContactActivity"/>
         <activity android:name=".activity.AToolsActivity"/>
         <activity android:name=".activity.AddressQueryActivity"/>
-        <activity android:name=".activity.DragViewActivity"/>
+        <activity android:name=".activity.DragViewActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
         <receiver android:name=".receiver.BootCompleteReceiver">
             <intent-filter>
                   <action android:name="android.intent.action.BOOT_COMPLETED"/>
@@ -66,5 +67,6 @@
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.SEND_SMS"/>
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
 </manifest>

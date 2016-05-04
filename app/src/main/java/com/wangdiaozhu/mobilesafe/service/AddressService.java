@@ -11,6 +11,8 @@ import android.os.IBinder;
 import android.telecom.TelecomManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -32,6 +34,10 @@ public class AddressService extends Service {
     private WindowManager mWM;
     private View view;
     private TextView tv_address;
+    private int startX;
+    private int startY;
+    private int mScreenWidth;
+    private int mScreenHeight;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -85,15 +91,19 @@ public class AddressService extends Service {
     public void showToast(String address){
 
         mWM = (WindowManager) getSystemService(WINDOW_SERVICE);
+        WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
+        mScreenWidth = wm.getDefaultDisplay().getWidth();
+        mScreenHeight = wm.getDefaultDisplay().getHeight();
         final WindowManager.LayoutParams params = new WindowManager.LayoutParams();
         params.height = WindowManager.LayoutParams.WRAP_CONTENT;
         params.width = WindowManager.LayoutParams.WRAP_CONTENT;
         params.format = PixelFormat.TRANSLUCENT;
-        params.type = WindowManager.LayoutParams.TYPE_TOAST;
+        params.type = WindowManager.LayoutParams.TYPE_PHONE;
         params.setTitle("Toast");
         params.flags = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
-                | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-                | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE;
+                | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+//                | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE;
+        params.gravity = Gravity.LEFT + Gravity.TOP;
 
        view = View.inflate(this, R.layout.custom_toast,null);
 
@@ -104,7 +114,84 @@ public class AddressService extends Service {
                 R.drawable.call_locate_blue,R.drawable.call_locate_gray,R.drawable.call_locate_green};
         tv_address.setBackgroundResource(bgIds[style]);
         tv_address.setText(address);
-             mWM.addView(view,params);
+        int  lastX =  PrefUtils.getInt("lastX",0,this);
+        int lastY =  PrefUtils.getInt("lastY",0,this);
+        params.x = lastX;
+        params.y = lastY;
+        view.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()){
+
+                    case MotionEvent.ACTION_DOWN:
+//                      获得起始坐标点
+                        startX = (int) event.getRawX();
+                        startY = (int) event.getRawY();
+                        break;
+
+                    case MotionEvent.ACTION_MOVE:
+//                        获得移动后坐标点
+                        int endX = (int) event.getRawX();
+                        int endY = (int) event.getRawY();
+//                       计算偏移量
+                        int dx = endX-startX;
+                        int dy = endY - startY;
+
+                        params.x = params.x +dx;
+                        params.y = params.y+ dy;
+
+                        if(params.x<0){
+
+                              params.x = 0;
+
+                        }
+
+                        if(params.x>mScreenWidth-view.getWidth()){
+
+                            params.x = mScreenWidth - view.getWidth();
+
+
+
+                        }
+                        if(params.y<0){
+
+                            params.y = 0;
+
+                        }
+
+                        if(params.y>mScreenHeight-view.getWidth() - 40){
+
+                            params.y = mScreenHeight - view.getWidth()-40;
+
+
+
+                        }
+                        mWM.updateViewLayout(view,params);
+
+//                        重新初始化起点坐标
+                        startX = (int) event.getRawX();
+                        startY = (int) event.getRawY();
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+////                       保存当前位置
+                        PrefUtils.putInt("lastX",params.x, getApplicationContext());
+                        PrefUtils.putInt("lastY",params.y,getApplicationContext());
+
+
+
+                        break;
+
+                }
+
+
+
+
+
+                return true;
+            }
+        });
+             mWM.addView(view, params);
     }
 
     class MyListener extends PhoneStateListener{

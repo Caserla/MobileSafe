@@ -40,6 +40,16 @@ public class DragViewActivity extends Activity {
         iv_drag = (ImageView) findViewById(R.id.iv_drag);
         int  lastX =  PrefUtils.getInt("lastX",0,this);
       int lastY =  PrefUtils.getInt("lastY",0,this);
+        if(lastY>mScreenHeight/2){
+
+
+            tv_top.setVisibility(View.VISIBLE);
+            tv_bottom.setVisibility(View.INVISIBLE);
+        }else {
+            tv_top.setVisibility(View.INVISIBLE);
+            tv_bottom.setVisibility(View.VISIBLE);
+
+        }
 
 //        iv_drag.layout(lastX,lastY,lastX+iv_drag.getWidth(),lastY+iv_drag.getHeight());
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) iv_drag.getLayoutParams();
@@ -80,6 +90,16 @@ public class DragViewActivity extends Activity {
                         if(t<0 || b>mScreenHeight-40){
 
                             return true;
+                        }
+                        if(t>mScreenHeight/2){
+
+
+                            tv_top.setVisibility(View.VISIBLE);
+                              tv_bottom.setVisibility(View.INVISIBLE);
+                        }else {
+                            tv_top.setVisibility(View.INVISIBLE);
+                            tv_bottom.setVisibility(View.VISIBLE);
+
                         }
                          iv_drag.layout(l,t,r,b);
 //                        重新初始化起点坐标
