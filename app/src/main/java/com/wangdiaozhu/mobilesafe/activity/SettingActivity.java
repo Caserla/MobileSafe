@@ -23,6 +23,7 @@ public class SettingActivity extends Activity {
     private SettingItemView sivUpdate;
     private SettingItemView sivAddress;
     private SettingItemClickView sicStyle;
+    private SettingItemClickView sicLocation;
     private String[] items = new String[]{"半透明","活力橙","卫士篮","金属灰","苹果绿"};;
     // private SharedPreferences sp;
 
@@ -34,6 +35,22 @@ public class SettingActivity extends Activity {
         initUpdate();
         initAddress();
         initAddressStyle();
+        initAddressLocation();
+    }
+
+    private void initAddressLocation() {
+           sicLocation = (SettingItemClickView) findViewById(R.id.sic_location);
+        sicLocation.setTitle("归属地提示框位置");
+        sicLocation.setDesc("设置归属地提示框的显示位置");
+        sicLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(getApplicationContext(),DragViewActivity.class));
+            }
+        });
+
+
     }
 
     private void initAddressStyle() {

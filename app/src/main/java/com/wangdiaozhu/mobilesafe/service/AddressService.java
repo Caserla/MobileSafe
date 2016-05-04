@@ -101,7 +101,7 @@ public class AddressService extends Service {
 
                      int style =  PrefUtils.getInt("address_style",0,this);
         int[] bgIds = new int[]{R.drawable.call_locate_white,R.drawable.call_locate_orange,
-                R.drawable.call_locate_blue,R.drawable.call_locate_gray,R.drawable.call_locate_gray};
+                R.drawable.call_locate_blue,R.drawable.call_locate_gray,R.drawable.call_locate_green};
         tv_address.setBackgroundResource(bgIds[style]);
         tv_address.setText(address);
              mWM.addView(view,params);

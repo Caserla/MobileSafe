@@ -28,7 +28,11 @@
         android:id="@+id/sic_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        />
+    <com.wangdiaozhu.mobilesafe.view.SettingItemClickView
+        android:id="@+id/sic_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         />
 
 
