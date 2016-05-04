@@ -3,24 +3,33 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
+        android:id="@+id/tv_top"
         android:layout_alignParentTop="true"
         android:background="@drawable/call_locate_blue"
         android:layout_width="match_parent"
-        android:layout_height="100sp"
+        android:layout_height="100dp"
         android:gravity="center"
         android:padding="15dp"
         android:textSize="20sp"
         android:textColor="#000"
         android:text="按住提示框拖到任意位置\n按手机返回键立即生效"/>
     <TextView
+        android:id="@+id/tv_bottom"
         android:layout_alignParentBottom="true"
         android:background="@drawable/call_locate_blue"
         android:layout_width="match_parent"
-        android:layout_height="100sp"
+        android:layout_height="100dp"
         android:gravity="center"
         android:padding="15dp"
         android:textSize="20sp"
         android:textColor="#000"
+        android:visibility="invisible"
         android:text="按住提示框拖到任意位置\n按手机返回键立即生效"/>
+    <ImageView
+        android:id="@+id/iv_drag"
+        android:src="@drawable/drag"
+        android:layout_marginTop="160dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>

@@ -26,6 +26,7 @@
         <activity android:name=".activity.ContactActivity"/>
         <activity android:name=".activity.AToolsActivity"/>
         <activity android:name=".activity.AddressQueryActivity"/>
+        <activity android:name=".activity.DragViewActivity"/>
         <receiver android:name=".receiver.BootCompleteReceiver">
             <intent-filter>
                   <action android:name="android.intent.action.BOOT_COMPLETED"/>
@@ -45,7 +46,7 @@
 
         </receiver>
         <receiver android:name=".receiver.SmsReceiver">
-            <intent-filter
+           <intent-filter
                 android:priority="2147483647"
                 >
                 <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
