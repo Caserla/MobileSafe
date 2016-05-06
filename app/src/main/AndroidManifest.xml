@@ -28,6 +28,7 @@
         <activity android:name=".activity.AddressQueryActivity"/>
         <activity android:name=".activity.DragViewActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <activity android:name=".activity.BlackNumberActivity"/>
         <receiver android:name=".receiver.BootCompleteReceiver">
             <intent-filter>
                   <action android:name="android.intent.action.BOOT_COMPLETED"/>

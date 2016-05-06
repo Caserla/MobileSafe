@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.os.SystemClock;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -26,6 +27,7 @@ public class DragViewActivity extends Activity {
     private int mScreenHeight;
     private TextView tv_bottom;
     private TextView tv_top;
+    private  long[] mHits = new long[2];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,7 +119,21 @@ public class DragViewActivity extends Activity {
                         break;
 
                 }
-                return true;
+                return false;
+            }
+        });
+
+        iv_drag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.arraycopy(mHits,1,mHits,0,mHits.length-1);
+                mHits[mHits.length-1] = SystemClock.uptimeMillis();
+                if(SystemClock.uptimeMillis()- mHits[0] <=500){
+//                  双击居中
+                  iv_drag.layout((mScreenWidth/2-iv_drag.getWidth()/2),iv_drag.getTop(),(mScreenHeight/2
+                          +iv_drag.getHeight()/2) ,iv_drag.getBottom());
+
+                }
             }
         });
     }

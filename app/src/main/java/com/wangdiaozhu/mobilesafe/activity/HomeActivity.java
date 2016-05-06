@@ -48,6 +48,9 @@ public class HomeActivity extends Activity {
                     case 0:
                         showSafeDialog();
                         break;
+                    case 1:
+                        startActivity(new Intent(getApplicationContext(),BlackNumberActivity.class));
+                            break;
                     case 7:
 
                         startActivity(new Intent(getApplicationContext(),AToolsActivity.class));
