@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+      <TextView
+
+          android:gravity="center"
+          android:textColor="#000"
+          android:textSize="20sp"
+          android:background="#ffcc99"
+          android:padding="10dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="添加黑名单号码"/>
+    <EditText
+        android:id="@+id/et_black_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="请输入黑名单号码"/>
+    <RadioGroup
+        android:id="@+id/rg_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <RadioButton
+            android:id="@+id/rb_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="电话"/>
+        <RadioButton
+            android:id="@+id/rb_sms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="短信"/>
+        <RadioButton
+            android:id="@+id/rb_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="全部"/>
+
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn_ok"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:background="@drawable/btn_lightgreen_selector"
+            android:layout_height="wrap_content" android:text="添加"/>
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:background="@drawable/btn_lightgreen_selector"
+            android:layout_height="wrap_content" android:text="放弃" />
+
+
+    </LinearLayout>
+</LinearLayout>

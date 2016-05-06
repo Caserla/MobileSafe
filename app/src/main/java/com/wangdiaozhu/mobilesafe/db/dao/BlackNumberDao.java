@@ -123,6 +123,47 @@ private  static BlackNumberDao blackNumberDao = null;
         database.close();
         return infos;
     }
+    //分页查询20条数据
+
+    public  ArrayList<BlackNumberInfo> findPart(int index){
+
+        SQLiteDatabase database = helper.getWritableDatabase();
+             Cursor cursor =   database.rawQuery("select number,mode from blacknumber order by _id desc limit ?,20", new String[]{index + ""});
+
+
+        ArrayList<BlackNumberInfo> infos = new ArrayList<BlackNumberInfo>();
+        while (cursor.moveToNext()){
+
+            String number = cursor.getString(0);
+
+            int mode = cursor.getInt(1);
+
+            BlackNumberInfo info = new BlackNumberInfo();
+            info.number = number;
+            info.mode = mode;
+            infos.add(info);
+
+        }
+        cursor.close();
+        database.close();
+        return infos;
+    }
+
+    public  int getTotalCount(){
+
+        SQLiteDatabase database = helper.getWritableDatabase();
+      Cursor cursor =  database.rawQuery("select count(*) from blacknumber", null);
+
+        int count = -1;
+        if (cursor.moveToFirst()){
+
+            count = cursor.getInt(0);
+
+        }
+        cursor.close();
+        database.close();
+        return  count;
+    }
 
 
 }
